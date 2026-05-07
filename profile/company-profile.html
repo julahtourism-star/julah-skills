@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Julah — Company Profile</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  /* ============================================================
+     Apple-inspired premium-minimal print profile
+     Tokens: see .claude/skills/awesome-design-md/design-md/apple/DESIGN.md
+     ============================================================ */
+  :root {
+    --ink: #1d1d1f;
+    --body: #1d1d1f;
+    --muted-80: #333333;
+    --muted-48: #7a7a7a;
+    --hairline: #e0e0e0;
+    --divider: #f0f0f0;
+    --canvas: #ffffff;
+    --parchment: #f5f5f7;
+    --surface-pearl: #fafafc;
+    --tile-dark: #1d1d1f;
+    --on-dark: #ffffff;
+    --on-dark-muted: #cccccc;
+    --primary: #0066cc;
+    --primary-on-dark: #2997ff;
+
+    --font-display: "SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-text: "SF Pro Text", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-ar: "SF Arabic", "Geeza Pro", "Noto Naskh Arabic", "Amiri", serif;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--parchment); color: var(--body); }
+  body {
+    font-family: var(--font-text);
+    font-size: 12pt;
+    line-height: 1.47;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ---- A4 page ---- */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 8mm auto;
+    background: var(--canvas);
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+  }
+  .page.dark { background: var(--tile-dark); color: var(--on-dark); }
+  .page.parchment { background: var(--parchment); }
+  .page:last-child { page-break-after: auto; }
+
+  .pad {
+    padding: 22mm 20mm;
+    height: 100%;
+  }
+  .pad-tight { padding: 16mm 20mm; }
+
+  /* ---- Type ---- */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.022em;
+  }
+  .hero { font-size: 56pt; line-height: 1.04; }
+  .h1   { font-size: 40pt; line-height: 1.08; }
+  .h2   { font-size: 28pt; line-height: 1.12; }
+  .h3   { font-size: 18pt; line-height: 1.2;  }
+  .lead { font-family: var(--font-display); font-size: 18pt; line-height: 1.35; font-weight: 400; letter-spacing: 0; }
+  .body-strong { font-weight: 600; }
+  .caption { font-size: 9.5pt; letter-spacing: 0; color: var(--muted-48); text-transform: uppercase; }
+  .eyebrow { font-size: 9pt; letter-spacing: .22em; text-transform: uppercase; color: var(--muted-48); font-weight: 600; }
+  .ar { font-family: var(--font-ar); direction: rtl; text-align: right; }
+
+  /* ---- Layout helpers ---- */
+  .row { display: flex; gap: 14mm; }
+  .col { flex: 1 1 0; min-width: 0; }
+  .stack > * + * { margin-top: 6mm; }
+  .stack-sm > * + * { margin-top: 3mm; }
+  .stack-xs > * + * { margin-top: 1.5mm; }
+  .divider { height: 1px; background: var(--hairline); border: 0; margin: 6mm 0; }
+  .dark .divider { background: rgba(255,255,255,.16); }
+  .muted { color: var(--muted-48); }
+  .dark .muted { color: var(--on-dark-muted); }
+
+  /* ---- Cover ---- */
+  .cover {
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 110%, rgba(41,151,255,.18), transparent 60%),
+      linear-gradient(180deg, #0a0a0c 0%, #1d1d1f 100%);
+    color: var(--on-dark);
+    display: flex;
+    flex-direction: column;
+  }
+  .cover .top { flex: 0 0 auto; }
+  .cover .center { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+  .cover .bottom { flex: 0 0 auto; }
+  .cover .top, .cover .bottom { padding: 20mm 20mm; }
+  .cover .center { padding: 0 20mm; align-self: center; }
+  .cover .wordmark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20pt;
+    letter-spacing: 0.02em;
+  }
+  .cover .wordmark .dot { color: var(--primary-on-dark); }
+  .cover .badge {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    padding: 1.4mm 4mm;
+    font-size: 9pt;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.82);
+  }
+  .cover h1 { font-size: 64pt; line-height: 1.02; letter-spacing: -0.03em; margin: 6mm 0 4mm; }
+  .cover .ar-hero { font-size: 28pt; line-height: 1.4; color: rgba(255,255,255,.78); }
+  .cover .meta {
+    display: flex; justify-content: space-between; align-items: end;
+    color: var(--on-dark-muted); font-size: 9pt; letter-spacing: .18em; text-transform: uppercase;
+  }
+  .cover .glyph {
+    width: 44mm; height: 44mm; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.22);
+    display: grid; place-items: center;
+    margin-bottom: 10mm;
+  }
+  .cover .glyph::after {
+    content: ""; width: 22mm; height: 22mm; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #5cc6ff, #0066cc 60%, #001a3a 100%);
+    box-shadow: 0 0 30mm rgba(41,151,255,.35);
+  }
+
+  /* ---- Wordmark used on light pages ---- */
+  .topbar { display: flex; justify-content: space-between; align-items: center; }
+  .topbar .wordmark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13pt;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .topbar .wordmark .dot { color: var(--primary); }
+  .topbar .pageno { font-size: 9pt; letter-spacing: .22em; text-transform: uppercase; color: var(--muted-48); }
+
+  /* ---- TOC ---- */
+  .toc { margin-top: 12mm; }
+  .toc .item {
+    display: flex;
+    align-items: baseline;
+    padding: 5mm 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .toc .num { flex: 0 0 14mm; font-family: var(--font-display); font-size: 14pt; font-weight: 600; color: var(--muted-48); }
+  .toc .title { flex: 1 1 auto; font-family: var(--font-display); font-size: 18pt; font-weight: 600; }
+  .toc .title .ar { display: block; font-size: 13pt; color: var(--muted-48); margin-top: 1mm; font-weight: 400; text-align: left; direction: rtl; }
+  .toc .pg { flex: 0 0 auto; font-family: var(--font-text); font-size: 11pt; color: var(--muted-48); }
+
+  /* ---- Bilingual block ---- */
+  .bi { display: flex; align-items: flex-start; }
+  .bi > * { flex: 1 1 50%; }
+  .bi > * + * { margin-left: 12mm; }
+  .bi .ar { font-size: 13pt; line-height: 1.8; }
+
+  /* ---- Cards / tiles ---- */
+  .grid-2 { display: flex; flex-wrap: wrap; margin: -4mm; }
+  .grid-2 > .tile { flex: 1 1 40%; min-width: 0; margin: 4mm; }
+  .grid-3 { display: flex; flex-wrap: wrap; margin: -3mm; }
+  .grid-3 > .tile { flex: 1 1 28%; min-width: 0; margin: 3mm; }
+  .tile {
+    background: var(--surface-pearl);
+    border: 1px solid var(--hairline);
+    border-radius: 4mm;
+    padding: 7mm;
+  }
+  .dark .tile {
+    background: #2a2a2c;
+    border-color: rgba(255,255,255,.08);
+  }
+  .tile .tile-eyebrow { font-size: 9pt; letter-spacing: .2em; text-transform: uppercase; color: var(--primary); font-weight: 600; }
+  .dark .tile .tile-eyebrow { color: var(--primary-on-dark); }
+  .tile h4 { font-family: var(--font-display); font-size: 16pt; font-weight: 600; margin: 2mm 0 1mm; letter-spacing: -0.01em; }
+  .tile .ar-title { font-family: var(--font-ar); font-size: 12pt; color: var(--muted-48); margin-bottom: 3mm; }
+  .dark .tile .ar-title { color: var(--on-dark-muted); }
+  .tile ul { margin: 0; padding-left: 5mm; }
+  .tile li { font-size: 10.5pt; line-height: 1.5; padding: 0.5mm 0; }
+  .tile li::marker { color: var(--muted-48); }
+
+  /* ---- Destination card ---- */
+  .dest {
+    border-top: 1px solid var(--hairline);
+    padding: 5.5mm 0;
+    display: flex;
+    align-items: flex-start;
+  }
+  .dest > * + * { margin-left: 6mm; }
+  .dest .num { flex: 0 0 10mm; font-family: var(--font-display); font-weight: 600; font-size: 14pt; color: var(--muted-48); }
+  .dest > div:nth-child(2),
+  .dest > div:nth-child(3) { flex: 1 1 0; min-width: 0; }
+  .dest .city { font-size: 10.5pt; color: var(--muted-80); }
+  .dest h4 { font-family: var(--font-display); font-weight: 600; font-size: 16pt; margin: 0 0 1mm; letter-spacing: -0.01em; }
+  .dest .ar-name { font-family: var(--font-ar); font-size: 12pt; color: var(--muted-48); }
+  .dest .city { font-size: 10.5pt; color: var(--muted-80); }
+  .dest .city b { color: var(--ink); font-weight: 600; }
+
+  /* ---- Pull-quote chapter divider ---- */
+  .pull {
+    text-align: center;
+    padding: 105mm 24mm 30mm;
+  }
+  .pull .quote { font-family: var(--font-display); font-weight: 600; font-size: 56pt; line-height: 1.05; letter-spacing: -0.025em; }
+  .pull .quote .accent { color: var(--primary-on-dark); }
+  .pull .ar-quote { font-family: var(--font-ar); font-size: 22pt; line-height: 1.6; color: rgba(255,255,255,.78); margin-top: 8mm; }
+  .pull .meta { margin-top: 14mm; font-size: 9pt; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+
+  /* ---- Contact ---- */
+  .contact-grid { display: flex; margin-top: 10mm; }
+  .contact-grid > div { flex: 1 1 0; min-width: 0; }
+  .contact-grid > div + div { margin-left: 10mm; }
+  .contact-row {
+    display: flex; padding: 4mm 0;
+    border-bottom: 1px solid rgba(255,255,255,.16);
+    font-size: 11pt;
+    align-items: center;
+  }
+  .contact-row .label { flex: 0 0 36mm; color: rgba(255,255,255,.55); letter-spacing: .18em; text-transform: uppercase; font-size: 9pt; }
+  .contact-row .val { flex: 1 1 auto; color: var(--on-dark); font-weight: 500; }
+
+  /* ---- Footer (light page) ---- */
+  .pgfoot {
+    position: absolute; left: 20mm; right: 20mm; bottom: 12mm;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 8.5pt; letter-spacing: .22em; text-transform: uppercase; color: var(--muted-48);
+  }
+  .dark .pgfoot { color: rgba(255,255,255,.48); }
+
+  /* ---- Print ---- */
+  @media print {
+    html, body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =============================================================
+     PAGE 1 — COVER
+============================================================= -->
+<section class="page cover">
+  <div class="top">
+    <div class="meta">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div>Company Profile · ملف الشركة</div>
+    </div>
+  </div>
+
+  <div class="center">
+    <div class="badge">Curated Travel · United Arab Emirates</div>
+    <h1 class="display">Dare to Dream.<br/>Dare to Travel.</h1>
+    <div class="ar ar-hero">«تجرَّأ على الحُلم،<br/>تجرَّأ على السفر.»</div>
+  </div>
+
+  <div class="bottom">
+    <div class="meta">
+      <div>Edition 2025</div>
+      <div>jul-ah.com</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 2 — TABLE OF CONTENTS
+============================================================= -->
+<section class="page">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">02 · Table of Contents</div>
+    </div>
+
+    <div style="margin-top:24mm">
+      <div class="eyebrow">Contents</div>
+      <h2 class="display h1" style="margin-top:4mm">Table of Contents</h2>
+      <div class="ar muted" style="font-size:14pt; margin-top:2mm">المحتويات</div>
+    </div>
+
+    <div class="toc">
+      <div class="item">
+        <div class="num">01</div>
+        <div class="title">Introduction <span class="ar">مقدّمة</span></div>
+        <div class="pg">03</div>
+      </div>
+      <div class="item">
+        <div class="num">02</div>
+        <div class="title">Types of Trips <span class="ar">أنواع الرحلات</span></div>
+        <div class="pg">05</div>
+      </div>
+      <div class="item">
+        <div class="num">03</div>
+        <div class="title">Packages <span class="ar">الباقات</span></div>
+        <div class="pg">09</div>
+      </div>
+      <div class="item">
+        <div class="num">04</div>
+        <div class="title">Destinations <span class="ar">الوجهات</span></div>
+        <div class="pg">11</div>
+      </div>
+      <div class="item">
+        <div class="num">05</div>
+        <div class="title">Contact <span class="ar">تواصل معنا</span></div>
+        <div class="pg">15</div>
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Company Profile</div>
+      <div>02</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 3 — INTRODUCTION
+============================================================= -->
+<section class="page">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">01 · Introduction</div>
+    </div>
+
+    <div style="margin-top:18mm; max-width: 150mm">
+      <div class="eyebrow">Welcome to Julah</div>
+      <h2 class="display h1" style="margin-top:4mm">Your curated travel experience.</h2>
+      <div class="ar" style="font-size:18pt; line-height:1.5; color:var(--muted-80); margin-top:4mm">
+        تجربتك السياحية المُصمَّمة بعناية.
+      </div>
+    </div>
+
+    <hr class="divider" style="margin-top:12mm" />
+
+    <div class="bi">
+      <div class="lead" style="font-size:14pt; line-height:1.55">
+        Julah, headquartered in the United Arab Emirates, specializes in crafting exceptional journeys.
+        We offer a diverse portfolio — from cultural immersion tours and adventurous expeditions, to
+        rejuvenating wellness retreats and luxurious escapes.
+        <br/><br/>
+        Our passionate team is dedicated to exceeding your expectations and crafting an unforgettable
+        travel experience, whether you yearn to explore historical treasures or embark on thrilling
+        adventures.
+      </div>
+      <div class="ar" style="font-size:12pt; line-height:1.85">
+        جولة، شركة سياحة إماراتية، تصنع رحلات استثنائية. نقدّم مجموعة متنوعة من التجارب،
+        تشمل الرحلات الاستكشافية والمغامرات، والجولات التراثية والثقافية، والجولات السياحية،
+        ورحلات الاسترخاء والعافية، والإقامات الفاخرة.
+        <br/><br/>
+        فريقنا الشغوف ملتزم بتجاوز توقعاتك وصياغة تجربة سفر لا تُنسى — سواء كنت تتوق
+        لاستكشاف الكنوز التاريخية أو الانطلاق في مغامرات مثيرة.
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Introduction</div>
+      <div>03</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 4 — CHAPTER PULL QUOTE
+============================================================= -->
+<section class="page dark">
+  <div class="pull">
+    <div class="quote">Journey <span class="accent">beyond</span><br/>dreams.</div>
+    <div class="ar-quote">رحلةٌ تتجاوز الأحلام.</div>
+    <div class="meta">Chapter 02 · Types of Trips</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 5 — TYPES OF TRIPS (1/2)
+============================================================= -->
+<section class="page">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">02 · Types of Trips</div>
+    </div>
+
+    <div style="margin-top:18mm">
+      <div class="eyebrow">Chapter 02</div>
+      <h2 class="display h1" style="margin-top:4mm">Types of trips.</h2>
+      <div class="ar muted" style="font-size:14pt; margin-top:2mm">أنواع الرحلات</div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14mm">
+      <div class="tile">
+        <div class="tile-eyebrow">01 — Culture</div>
+        <h4>Cultural &amp; Historical Tours</h4>
+        <div class="ar-title">الجولات الثقافية والتاريخية</div>
+        <ul>
+          <li>City tours with visits to museums, historical sites, and landmarks.</li>
+          <li>Cultural festivals and live events.</li>
+        </ul>
+      </div>
+
+      <div class="tile">
+        <div class="tile-eyebrow">02 — Adventure</div>
+        <h4>Adventure &amp; Outdoor Trips</h4>
+        <div class="ar-title">المغامرات والرحلات الخارجية</div>
+        <ul>
+          <li>Hiking and trekking expeditions.</li>
+          <li>Camping and glamping experiences.</li>
+          <li>Water sports — kayaking, rafting, diving.</li>
+          <li>Safari tours and wildlife viewing.</li>
+        </ul>
+      </div>
+
+      <div class="tile">
+        <div class="tile-eyebrow">03 — Wellness</div>
+        <h4>Relaxation &amp; Wellness</h4>
+        <div class="ar-title">رحلات الاسترخاء والعافية</div>
+        <ul>
+          <li>Beach vacations.</li>
+          <li>Spa and wellness retreats.</li>
+          <li>Yoga and meditation retreats.</li>
+        </ul>
+      </div>
+
+      <div class="tile">
+        <div class="tile-eyebrow">04 — Family</div>
+        <h4>Family &amp; Group Travel</h4>
+        <div class="ar-title">السفر العائلي والجماعي</div>
+        <ul>
+          <li>Honeymoon journeys.</li>
+          <li>Family-friendly packages with activities for all ages.</li>
+          <li>Group tours for schools, corporate teams &amp; clubs.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Types of Trips</div>
+      <div>05</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 6 — TYPES OF TRIPS (2/2)
+============================================================= -->
+<section class="page parchment">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">02 · Types of Trips</div>
+    </div>
+
+    <div class="grid-2" style="margin-top:30mm">
+      <div class="tile" style="background:#fff">
+        <div class="tile-eyebrow">05 — Luxury</div>
+        <h4>Luxury Travel</h4>
+        <div class="ar-title">السفر الفاخر</div>
+        <ul>
+          <li>High-end resort stays.</li>
+          <li>Private yacht and bespoke cruise tours.</li>
+          <li>Exclusive itineraries with VIP services.</li>
+        </ul>
+      </div>
+
+      <div class="tile" style="background:#fff">
+        <div class="tile-eyebrow">06 — At Sea</div>
+        <h4>Cruises &amp; Boat Trips</h4>
+        <div class="ar-title">الرحلات البحرية ورحلات القوارب</div>
+        <ul>
+          <li>River and ocean cruises.</li>
+          <li>Sailing trips and chartered voyages.</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin-top:14mm" />
+
+    <div class="bi" style="margin-top:6mm">
+      <div class="lead muted" style="font-size:14pt">
+        Every itinerary is hand-picked to match your pace, your people, and your purpose —
+        because no two travelers are the same.
+      </div>
+      <div class="ar muted" style="font-size:12pt; line-height:1.9">
+        كل برنامج رحلة يُختار بعناية ليتناسب مع إيقاعك، ورفاقك، وهدفك من السفر —
+        لأنّ لا يوجد مسافران متماثلان.
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Types of Trips</div>
+      <div>06</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 7 — CHAPTER PULL QUOTE (PACKAGES)
+============================================================= -->
+<section class="page dark">
+  <div class="pull">
+    <div class="quote">Travel <span class="accent">more.</span><br/>Live more.</div>
+    <div class="ar-quote">سافر أكثر، عش أكثر.</div>
+    <div class="meta">Chapter 03 · Packages</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 8 — PACKAGES
+============================================================= -->
+<section class="page">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">03 · Packages</div>
+    </div>
+
+    <div style="margin-top:18mm">
+      <div class="eyebrow">Chapter 03</div>
+      <h2 class="display h1" style="margin-top:4mm">Packages.</h2>
+      <div class="ar muted" style="font-size:14pt; margin-top:2mm">الباقات</div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14mm">
+      <div class="tile">
+        <div class="tile-eyebrow">A</div>
+        <h4>Flights &amp; Accommodation</h4>
+        <div class="ar-title">تذاكر الطيران والإقامة</div>
+        <p style="font-size:11pt; line-height:1.55; margin:2mm 0 0">
+          Curated bundles that combine airfare with hand-selected hotels — booked, confirmed, and
+          taken care of, end to end.
+        </p>
+      </div>
+
+      <div class="tile">
+        <div class="tile-eyebrow">B</div>
+        <h4>Tour Packages</h4>
+        <div class="ar-title">برامج سياحية</div>
+        <p style="font-size:11pt; line-height:1.55; margin:2mm 0 0">
+          Day tours and full-itinerary travel programs that include transport and licensed guides —
+          from arrival to departure.
+        </p>
+      </div>
+
+      <div class="tile">
+        <div class="tile-eyebrow">C</div>
+        <h4>Special Offers</h4>
+        <div class="ar-title">عروض خاصة</div>
+        <p style="font-size:11pt; line-height:1.55; margin:2mm 0 0">
+          Discounts for group bookings, family bundles, and seasonal holiday offers — released
+          throughout the year.
+        </p>
+      </div>
+
+      <div class="tile">
+        <div class="tile-eyebrow">D</div>
+        <h4>Unique Experiences</h4>
+        <div class="ar-title">تجارب فريدة</div>
+        <p style="font-size:11pt; line-height:1.55; margin:2mm 0 0">
+          One-of-a-kind moments — diving, alpine skiing, private dinners in extraordinary
+          settings — designed for the story.
+        </p>
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Packages</div>
+      <div>08</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 9 — CHAPTER PULL QUOTE (DESTINATIONS)
+============================================================= -->
+<section class="page dark">
+  <div class="pull">
+    <div class="quote">Find <span class="accent">your next</span><br/>destination.</div>
+    <div class="ar-quote">اكتشف وجهتك التالية مع جولة.</div>
+    <div class="meta">Chapter 04 · Destinations</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 10 — DESTINATIONS (1/3)
+============================================================= -->
+<section class="page">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">04 · Destinations</div>
+    </div>
+
+    <div style="margin-top:14mm">
+      <div class="eyebrow">Chapter 04 · 13 Countries</div>
+      <h2 class="display h1" style="margin-top:4mm">Destinations.</h2>
+      <div class="ar muted" style="font-size:14pt; margin-top:2mm">الوجهات</div>
+    </div>
+
+    <div style="margin-top:8mm">
+      <div class="dest">
+        <div class="num">01</div>
+        <div>
+          <h4>Georgia</h4>
+          <div class="ar-name">جورجيا</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Tbilisi</b> — rich history, vibrant culture, and stunning architecture.</p>
+          <p style="margin:0"><b>Kazbegi</b> — beautiful mountain landscapes and outdoor activities.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">02</div>
+        <div>
+          <h4>Armenia</h4>
+          <div class="ar-name">أرمينيا</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Yerevan</b> — modern and historical attractions, museums, and heritage sites.</p>
+          <p style="margin:0"><b>Lake Sevan</b> — affordable getaway with stunning lake views.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">03</div>
+        <div>
+          <h4>Azerbaijan</h4>
+          <div class="ar-name">أذربيجان</div>
+        </div>
+        <div class="city">
+          <p style="margin:0"><b>Baku</b> — modern architecture meets historic sites for a unique cultural experience.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">04</div>
+        <div>
+          <h4>India</h4>
+          <div class="ar-name">الهند</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Goa</b> — famous beaches, affordable stays, vibrant nightlife.</p>
+          <p style="margin:0"><b>Kerala</b> — scenic backwaters, wildlife sanctuaries, budget-friendly homestays.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">05</div>
+        <div>
+          <h4>Sri Lanka</h4>
+          <div class="ar-name">سريلانكا</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Colombo</b> — a mix of cultural sites and modern attractions.</p>
+          <p style="margin:0"><b>Kandy &amp; Ella</b> — scenic landscapes and affordable guesthouses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Destinations</div>
+      <div>10</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 11 — DESTINATIONS (2/3)
+============================================================= -->
+<section class="page parchment">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">04 · Destinations</div>
+    </div>
+
+    <div style="margin-top:14mm">
+      <div class="dest">
+        <div class="num">06</div>
+        <div>
+          <h4>Nepal</h4>
+          <div class="ar-name">نيبال</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Kathmandu</b> — rich in culture and history with affordable accommodations.</p>
+          <p style="margin:0"><b>Pokhara</b> — popular for trekking and outdoor activities at reasonable prices.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">07</div>
+        <div>
+          <h4>Türkiye</h4>
+          <div class="ar-name">تركيا</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Istanbul</b> — rich history and vibrant culture with budget-friendly options.</p>
+          <p style="margin:0"><b>Cappadocia</b> — unique landscapes and affordable tours.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">08</div>
+        <div>
+          <h4>Bulgaria</h4>
+          <div class="ar-name">بلغاريا</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Sofia</b> — history and culture at reasonable prices.</p>
+          <p style="margin:0"><b>Plovdiv</b> — ancient Roman theatre and a charming old town.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">09</div>
+        <div>
+          <h4>Serbia</h4>
+          <div class="ar-name">صربيا</div>
+        </div>
+        <div class="city">
+          <p style="margin:0"><b>Belgrade</b> — vibrant nightlife and affordable prices.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">10</div>
+        <div>
+          <h4>Romania</h4>
+          <div class="ar-name">رومانيا</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Bucharest</b> — modern and historical attractions at affordable rates.</p>
+          <p style="margin:0"><b>Brașov</b> — medieval charm and proximity to the famous Bran Castle.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Destinations</div>
+      <div>11</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 12 — DESTINATIONS (3/3)
+============================================================= -->
+<section class="page">
+  <div class="pad">
+    <div class="topbar">
+      <div class="wordmark">Jul<span class="dot">•</span>ah</div>
+      <div class="pageno">04 · Destinations</div>
+    </div>
+
+    <div style="margin-top:14mm">
+      <div class="dest">
+        <div class="num">11</div>
+        <div>
+          <h4>Kazakhstan</h4>
+          <div class="ar-name">كازاخستان</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Almaty</b> — Kazakhstan's largest city, framed by mountains, parks, and cultural sites.</p>
+          <p style="margin:0"><b>Astana (Nur-Sultan)</b> — the capital, home to bold modern architecture and the Bayterek Tower.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">12</div>
+        <div>
+          <h4>Uzbekistan</h4>
+          <div class="ar-name">أوزبكستان</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Tashkent</b> — Soviet-era architecture meets vibrant markets; an ideal starting point.</p>
+          <p style="margin:0 0 1.5mm"><b>Samarkand</b> — stunning Islamic architecture, Registan Square, and Shah-i-Zinda.</p>
+          <p style="margin:0"><b>Bukhara</b> — well-preserved medieval city of mosques, madrasas, and a historic fortress.</p>
+        </div>
+      </div>
+
+      <div class="dest">
+        <div class="num">13</div>
+        <div>
+          <h4>Kyrgyzstan</h4>
+          <div class="ar-name">قيرغيزستان</div>
+        </div>
+        <div class="city">
+          <p style="margin:0 0 1.5mm"><b>Bishkek</b> — Soviet-era buildings and beautiful parks; an affordable, relaxed capital.</p>
+          <p style="margin:0"><b>Issyk-Kul Lake</b> — scenic mountain lake offering swimming, hiking, and outdoor adventures.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin-top:14mm"/>
+
+    <div class="bi" style="margin-top:6mm">
+      <div class="lead muted" style="font-size:14pt">
+        Thirteen countries. One travel partner. From the Caucasus to Central Asia and the Indian
+        Ocean — Julah connects you to the journeys that matter.
+      </div>
+      <div class="ar muted" style="font-size:12pt; line-height:1.9">
+        ثلاث عشرة دولة، وشريك سفر واحد. من القوقاز إلى آسيا الوسطى والمحيط الهندي —
+        جولة تربطك بالرحلات التي تترك أثرًا.
+      </div>
+    </div>
+
+    <div class="pgfoot">
+      <div>Julah · Destinations</div>
+      <div>12</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 13 — CONTACT
+============================================================= -->
+<section class="page dark">
+  <div class="pad">
+    <div class="topbar" style="color:rgba(255,255,255,.85)">
+      <div class="wordmark" style="color:#fff">Jul<span class="dot" style="color:var(--primary-on-dark)">•</span>ah</div>
+      <div class="pageno" style="color:rgba(255,255,255,.55)">05 · Contact</div>
+    </div>
+
+    <div style="margin-top:24mm; max-width:160mm">
+      <div class="eyebrow" style="color:rgba(255,255,255,.55)">Chapter 05</div>
+      <h2 class="display hero" style="margin-top:6mm; color:#fff">Let's plan<br/>your journey.</h2>
+      <div class="ar" style="font-size:24pt; line-height:1.5; color:rgba(255,255,255,.78); margin-top:6mm">
+        لِنُخطِّط رحلتك القادمة معًا.
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-row">
+          <div class="label">Email</div>
+          <div class="val">hello@jul-ah.com</div>
+        </div>
+        <div class="contact-row">
+          <div class="label">Phone</div>
+          <div class="val">+971 — — — — — —</div>
+        </div>
+        <div class="contact-row">
+          <div class="label">WhatsApp</div>
+          <div class="val">+971 — — — — — —</div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-row">
+          <div class="label">Office</div>
+          <div class="val">United Arab Emirates</div>
+        </div>
+        <div class="contact-row">
+          <div class="label">Web</div>
+          <div class="val">jul-ah.com</div>
+        </div>
+        <div class="contact-row">
+          <div class="label">Social</div>
+          <div class="val">@julah.travel</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:absolute; left:20mm; right:20mm; bottom:20mm;">
+      <hr class="divider"/>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; color:rgba(255,255,255,.55); font-size:9pt; letter-spacing:.22em; text-transform:uppercase">
+        <div>© 2025 Julah · All rights reserved</div>
+        <div>Edition 2025 · 13 / 13</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
